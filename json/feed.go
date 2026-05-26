@@ -1,7 +1,5 @@
 package json
 
-import "encoding/json"
-
 // Feed describes the structure for JSON Feed v1.0
 // https://www.jsonfeed.org/version/1/
 type Feed struct {
@@ -25,10 +23,7 @@ type Feed struct {
 	Language string    `json:"language,omitempty"`
 }
 
-func (f Feed) String() string {
-	json, _ := json.MarshalIndent(f, "", "    ")
-	return string(json)
-}
+func (f Feed) String() string { _ = "STUB: not implemented"; return "" }
 
 // Item defines an item in the feed
 type Item struct {

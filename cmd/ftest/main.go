@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"net/http"
 	"os"
 	"strings"
 
@@ -64,32 +62,8 @@ func main() {
 	app.Run(os.Args)
 }
 
-func fetchFeed(feedLoc string) (string, error) {
-	if strings.HasPrefix(feedLoc, "http") {
-		return fetchURL(feedLoc)
-	}
-	file, err := fetchFile(feedLoc)
-	if err != nil {
-		return "", err
-	}
-	return string(file), nil
-}
+func fetchFeed(feedLoc string) (string, error) { _ = "STUB: not implemented"; return "", nil }
 
-func fetchFile(path string) (string, error) {
-	f, err := os.ReadFile(path)
-	return string(f), err
-}
+func fetchFile(path string) (string, error) { _ = "STUB: not implemented"; return "", nil }
 
-func fetchURL(url string) (string, error) {
-	response, err := http.Get(url)
-	if err != nil {
-		return "", err
-	}
-	defer response.Body.Close()
-	contents, err := io.ReadAll(response.Body)
-	if err != nil {
-		return "", err
-	}
-
-	return string(contents), nil
-}
+func fetchURL(url string) (string, error) { _ = "STUB: not implemented"; return "", nil }

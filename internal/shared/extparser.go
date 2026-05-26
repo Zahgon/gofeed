@@ -1,115 +1,47 @@
 package shared
 
-import (
-	"strings"
-
-	"github.com/mmcdole/gofeed/extensions"
-	"github.com/mmcdole/goxpp"
-)
+import xpp "github.com/mmcdole/goxpp"
 
 // IsExtension returns whether or not the current
 // XML element is an extension element (if it has a
 // non empty prefix)
-func IsExtension(p *xpp.XMLPullParser) bool {
-	space := strings.TrimSpace(p.Space)
-	prefix := PrefixForNamespace(space, p)
-	return !(prefix == "" || prefix == "rss" || prefix == "rdf" || prefix == "content")
-}
+func IsExtension(p *xpp.XMLPullParser) bool { _ = "STUB: not implemented"; return false }
 
 // ParseExtension parses the current element of the
 // XMLPullParser as an extension element and updates
 // the extension map
 func ParseExtension(fe ext.Extensions, p *xpp.XMLPullParser) (ext.Extensions, error) {
-	prefix := PrefixForNamespace(p.Space, p)
-
-	result, err := parseExtensionElement(p)
-	if err != nil {
-		return nil, err
-	}
-
-	// Ensure the extension prefix map exists
-	if _, ok := fe[prefix]; !ok {
-		fe[prefix] = map[string][]ext.Extension{}
-	}
-	// Ensure the extension element slice exists
-	if _, ok := fe[prefix][p.Name]; !ok {
-		fe[prefix][p.Name] = []ext.Extension{}
-	}
-
-	fe[prefix][p.Name] = append(fe[prefix][p.Name], result)
-	return fe, nil
+	_ = "STUB: not implemented"
+	return *new(ext.Extensions), nil
 }
+
+// Ensure the extension prefix map exists
+
+// Ensure the extension element slice exists
 
 func parseExtensionElement(p *xpp.XMLPullParser) (e ext.Extension, err error) {
-	if err = p.Expect(xpp.StartTag, "*"); err != nil {
-		return e, err
-	}
-
-	e.Name = p.Name
-	e.Children = map[string][]ext.Extension{}
-	e.Attrs = map[string]string{}
-
-	for _, attr := range p.Attrs {
-		// TODO: Alright that we are stripping
-		// namespace information from attributes ?
-		e.Attrs[attr.Name.Local] = attr.Value
-	}
-
-	for {
-		tok, err := p.Next()
-		if err != nil {
-			return e, err
-		}
-
-		if tok == xpp.EndTag {
-			break
-		}
-
-		if tok == xpp.StartTag {
-			child, err := parseExtensionElement(p)
-			if err != nil {
-				return e, err
-			}
-
-			if _, ok := e.Children[child.Name]; !ok {
-				e.Children[child.Name] = []ext.Extension{}
-			}
-
-			e.Children[child.Name] = append(e.Children[child.Name], child)
-		} else if tok == xpp.Text {
-			e.Value += p.Text
-		}
-	}
-
-	e.Value = strings.TrimSpace(e.Value)
-
-	if err = p.Expect(xpp.EndTag, e.Name); err != nil {
-		return e, err
-	}
-
-	return e, nil
+	_ = "STUB: not implemented"
+	return *new(ext.Extension), nil
 }
 
+// TODO: Alright that we are stripping
+// namespace information from attributes ?
+
 func PrefixForNamespace(space string, p *xpp.XMLPullParser) string {
+	_ = "STUB: not implemented"
 	// First we check if the global namespace map
 	// contains an entry for this namespace/prefix.
 	// This way we can use the canonical prefix for this
 	// ns instead of the one defined in the feed.
-	if prefix, ok := canonicalNamespaces[space]; ok {
-		return prefix
-	}
-
-	// Next we check if the feed itself defined this
-	// this namespace and return it if we have a result.
-	if prefix, ok := p.Spaces[space]; ok {
-		return prefix
-	}
-
-	// Lastly, any namespace which is not defined in the
-	// the feed will be the prefix itself when using Go's
-	// xml.Decoder.Token() method.
-	return space
+	return ""
 }
+
+// Next we check if the feed itself defined this
+// this namespace and return it if we have a result.
+
+// Lastly, any namespace which is not defined in the
+// the feed will be the prefix itself when using Go's
+// xml.Decoder.Token() method.
 
 // Namespaces taken from github.com/kurtmckee/feedparser
 // These are used for determining canonical name space prefixes

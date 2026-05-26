@@ -1,10 +1,9 @@
 package atom
 
 import (
-	"encoding/json"
 	"time"
 
-	"github.com/mmcdole/gofeed/extensions"
+	ext "github.com/mmcdole/gofeed/extensions"
 )
 
 // Feed is an Atom Feed
@@ -28,10 +27,7 @@ type Feed struct {
 	Version       string         `json:"version"`
 }
 
-func (f Feed) String() string {
-	json, _ := json.MarshalIndent(f, "", "    ")
-	return string(json)
-}
+func (f Feed) String() string { _ = "STUB: not implemented"; return "" }
 
 // Entry is an Atom Entry
 type Entry struct {

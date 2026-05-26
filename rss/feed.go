@@ -1,7 +1,6 @@
 package rss
 
 import (
-	"encoding/json"
 	"time"
 
 	ext "github.com/mmcdole/gofeed/extensions"
@@ -38,10 +37,7 @@ type Feed struct {
 	Version             string                   `json:"version"`
 }
 
-func (f Feed) String() string {
-	json, _ := json.MarshalIndent(f, "", "    ")
-	return string(json)
-}
+func (f Feed) String() string { _ = "STUB: not implemented"; return "" }
 
 // Item is an RSS Item
 type Item struct {

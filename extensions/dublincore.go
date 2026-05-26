@@ -24,22 +24,6 @@ type DublinCoreExtension struct {
 // NewDublinCoreExtension creates a new DublinCoreExtension
 // given the generic extension map for the "dc" prefix.
 func NewDublinCoreExtension(extensions map[string][]Extension) *DublinCoreExtension {
-	dc := &DublinCoreExtension{}
-	dc.Title = parseTextArrayExtension("title", extensions)
-	dc.Creator = parseTextArrayExtension("creator", extensions)
-	dc.Author = parseTextArrayExtension("author", extensions)
-	dc.Subject = parseTextArrayExtension("subject", extensions)
-	dc.Description = parseTextArrayExtension("description", extensions)
-	dc.Publisher = parseTextArrayExtension("publisher", extensions)
-	dc.Contributor = parseTextArrayExtension("contributor", extensions)
-	dc.Date = parseTextArrayExtension("date", extensions)
-	dc.Type = parseTextArrayExtension("type", extensions)
-	dc.Format = parseTextArrayExtension("format", extensions)
-	dc.Identifier = parseTextArrayExtension("identifier", extensions)
-	dc.Source = parseTextArrayExtension("source", extensions)
-	dc.Language = parseTextArrayExtension("language", extensions)
-	dc.Relation = parseTextArrayExtension("relation", extensions)
-	dc.Coverage = parseTextArrayExtension("coverage", extensions)
-	dc.Rights = parseTextArrayExtension("rights", extensions)
-	return dc
+	_ = "STUB: not implemented"
+	return nil
 }

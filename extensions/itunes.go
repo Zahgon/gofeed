@@ -50,101 +50,28 @@ type ITunesOwner struct {
 // NewITunesFeedExtension creates an ITunesFeedExtension given an
 // extension map for the "itunes" key.
 func NewITunesFeedExtension(extensions map[string][]Extension) *ITunesFeedExtension {
-	feed := &ITunesFeedExtension{}
-	feed.Author = parseTextExtension("author", extensions)
-	feed.Block = parseTextExtension("block", extensions)
-	feed.Explicit = parseTextExtension("explicit", extensions)
-	feed.Keywords = parseTextExtension("keywords", extensions)
-	feed.Subtitle = parseTextExtension("subtitle", extensions)
-	feed.Summary = parseTextExtension("summary", extensions)
-	feed.Image = parseImage(extensions)
-	feed.Complete = parseTextExtension("complete", extensions)
-	feed.NewFeedURL = parseTextExtension("new-feed-url", extensions)
-	feed.Categories = parseCategories(extensions)
-	feed.Owner = parseOwner(extensions)
-	feed.Type = parseTextExtension("type", extensions)
-	return feed
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // NewITunesItemExtension creates an ITunesItemExtension given an
 // extension map for the "itunes" key.
 func NewITunesItemExtension(extensions map[string][]Extension) *ITunesItemExtension {
-	entry := &ITunesItemExtension{}
-	entry.Author = parseTextExtension("author", extensions)
-	entry.Block = parseTextExtension("block", extensions)
-	entry.Duration = parseTextExtension("duration", extensions)
-	entry.Explicit = parseTextExtension("explicit", extensions)
-	entry.Subtitle = parseTextExtension("subtitle", extensions)
-	entry.Summary = parseTextExtension("summary", extensions)
-	entry.Keywords = parseTextExtension("keywords", extensions)
-	entry.Image = parseImage(extensions)
-	entry.IsClosedCaptioned = parseTextExtension("isClosedCaptioned", extensions)
-	entry.Episode = parseTextExtension("episode", extensions)
-	entry.Season = parseTextExtension("season", extensions)
-	entry.Order = parseTextExtension("order", extensions)
-	entry.EpisodeType = parseTextExtension("episodeType", extensions)
-	return entry
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func parseImage(extensions map[string][]Extension) (image string) {
-	if extensions == nil {
-		return
-	}
-
-	matches, ok := extensions["image"]
-	if !ok || len(matches) == 0 {
-		return
-	}
-
-	image = matches[0].Attrs["href"]
-	return
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func parseOwner(extensions map[string][]Extension) (owner *ITunesOwner) {
-	if extensions == nil {
-		return
-	}
-
-	matches, ok := extensions["owner"]
-	if !ok || len(matches) == 0 {
-		return
-	}
-
-	owner = &ITunesOwner{}
-	if name, ok := matches[0].Children["name"]; ok {
-		owner.Name = name[0].Value
-	}
-	if email, ok := matches[0].Children["email"]; ok {
-		owner.Email = email[0].Value
-	}
-	return
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func parseCategories(extensions map[string][]Extension) (categories []*ITunesCategory) {
-	if extensions == nil {
-		return
-	}
-
-	matches, ok := extensions["category"]
-	if !ok || len(matches) == 0 {
-		return
-	}
-
-	categories = []*ITunesCategory{}
-	for _, cat := range matches {
-		c := &ITunesCategory{}
-		if text, ok := cat.Attrs["text"]; ok {
-			c.Text = text
-		}
-
-		if subs, ok := cat.Children["category"]; ok {
-			s := &ITunesCategory{}
-			if text, ok := subs[0].Attrs["text"]; ok {
-				s.Text = text
-			}
-			c.Subcategory = s
-		}
-		categories = append(categories, c)
-	}
-	return
+	_ = "STUB: not implemented"
+	return nil
 }

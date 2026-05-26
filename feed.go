@@ -1,7 +1,6 @@
 package gofeed
 
 import (
-	"encoding/json"
 	"time"
 
 	ext "github.com/mmcdole/gofeed/extensions"
@@ -39,10 +38,7 @@ type Feed struct {
 }
 
 // String returns a JSON representation of the Feed for debugging purposes.
-func (f Feed) String() string {
-	json, _ := json.MarshalIndent(f, "", "    ")
-	return string(json)
-}
+func (f Feed) String() string { _ = "STUB: not implemented"; return "" }
 
 // Item is the universal Item type that atom.Entry
 // and rss.Item gets translated to.  It represents
@@ -91,29 +87,11 @@ type Enclosure struct {
 }
 
 // Len returns the length of Items.
-func (f Feed) Len() int {
-	return len(f.Items)
-}
+func (f Feed) Len() int { _ = "STUB: not implemented"; return 0 }
 
 // Less compares PublishedParsed of Items[i], Items[k]
 // and returns true if Items[i] is less than Items[k].
-func (f Feed) Less(i, k int) bool {
-	iParsed := f.Items[i].PublishedParsed
-	kParsed := f.Items[k].PublishedParsed
-	
-	if iParsed == nil && kParsed == nil {
-		return false
-	}
-	if iParsed == nil {
-		return true
-	}
-	if kParsed == nil {
-		return false
-	}
-	return iParsed.Before(*kParsed)
-}
+func (f Feed) Less(i, k int) bool { _ = "STUB: not implemented"; return false }
 
 // Swap swaps Items[i] and Items[k].
-func (f Feed) Swap(i, k int) {
-	f.Items[i], f.Items[k] = f.Items[k], f.Items[i]
-}
+func (f Feed) Swap(i, k int) { _ = "STUB: not implemented"; return }
